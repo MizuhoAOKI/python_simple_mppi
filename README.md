@@ -16,20 +16,18 @@ cd python_simple_mppi
 poetry install
 ```
 
-<!--
 ## Usage
 - Run simulation to swing up a pendulum.
     ```sh
     cd python_simple_mppi
-    poetry run python mppi_pendulum.py
+    poetry run python scripts/mppi_pendulum.py
     ```
 
 - Run notebook if you would like to check explanations on the algorithm.
     ```sh
     cd python_simple_mppi
-    poetry run jupyter notebook mppi_pendulum.ipynb
+    poetry run jupyter notebook notebooks/mppi_pendulum.ipynb
     ```
--->
 
 ## References
 1. G. Williams et al. "Information-Theoretic Model Predictive Control: Theory and Applications to Autonomous Driving" 
