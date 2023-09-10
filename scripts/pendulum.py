@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import patches
 from matplotlib.animation import ArtistAnimation
+from typing import Tuple
 
 class Pendulum():
     def __init__(
@@ -60,7 +61,7 @@ class Pendulum():
             self.ax.tick_params(bottom=False, left=False, right=False, top=False)
             self.ax.set_aspect('equal')
 
-    def update(self, u, delta_t=None, append_frame=True) -> None:
+    def update(self, u: np.ndarray, delta_t: float = 0.0, append_frame=True) -> None:
         """update state variables"""
         # get previous state variables
         theta, theta_dot = self.state
@@ -69,7 +70,7 @@ class Pendulum():
         g = self.g
         m = self.mass_of_pole
         l = self.length_of_pole
-        dt = self.delta_t if delta_t is None else delta_t
+        dt = self.delta_t if delta_t is 0.0 else delta_t
 
         torque = np.clip(u, -self.max_torque, self.max_torque)[0]
         new_theta_dot = theta_dot + (3 * g / (2 * l) * np.sin(theta) + 3.0 / (m * l**2) * torque) * dt
@@ -88,7 +89,7 @@ class Pendulum():
         """return state variables"""
         return self.state.copy()
 
-    def append_frame(self, torque) -> list:
+    def append_frame(self, torque: float) -> None:
         """draw a frame of the animation."""
         # draw the pendulum
         theta, theta_dot = self.state
@@ -124,7 +125,8 @@ class Pendulum():
         # append frame
         self.frames.append(frame)
 
-    def _draw_arc_arrow(self, ax,radius,cent_x,cent_y,angle_s,angle_g,arrow_loc='e',color='black'):
+    def _draw_arc_arrow(self, ax: plt.axes, radius: float, cent_x: float, cent_y: float, \
+                        angle_s: float, angle_g: float, arrow_loc: str='e', color: str='black') -> list:
         # create the arc
         theta2_ = angle_g - angle_s if angle_g > angle_s else angle_g - angle_s + 360
         diameter=2*radius
@@ -158,7 +160,7 @@ class Pendulum():
         return [self.ax.add_artist(arc)]+[self.ax.add_artist(head)] # return arrow object
 
     # rotate shape and return location on the x-y plane.
-    def _affine_transform(self, xlist, ylist, angle, translation=[0.0, 0.0]): # angle [rad]
+    def _affine_transform(self, xlist: list, ylist: list, angle: float, translation: list=[0.0, 0.0]) -> Tuple[list, list]:
         transformed_x = []
         transformed_y = []
         if len(xlist) != len(ylist):
@@ -172,7 +174,7 @@ class Pendulum():
         transformed_y.append(transformed_y[0])
         return transformed_x, transformed_y
     
-    def save_animation(self, filename, interval, movie_writer="ffmpeg") -> None:
+    def save_animation(self, filename: str, interval: int, movie_writer: str="ffmpeg") -> None:
         """save animation of the recorded frames (ffmpeg required)"""
         ani = ArtistAnimation(self.fig, self.frames, interval=interval)
         ani.save(filename, writer=movie_writer)

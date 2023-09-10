@@ -23,7 +23,7 @@ poetry install
     poetry run python scripts/mppi_pendulum.py
     ```
 
-- Run notebook if you would like to check explanations on the algorithm.
+- Run notebook <!-- if you would like to check explanations on the algorithm. -->
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pendulum.ipynb

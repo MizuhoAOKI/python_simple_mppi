@@ -1,6 +1,7 @@
 import math
 import numpy as np
 from pendulum import Pendulum
+from typing import Tuple
 
 class MPPIControllerForPendulum():
     def __init__(
@@ -21,7 +22,6 @@ class MPPIControllerForPendulum():
     ) -> None:
         """initialize mppi controller for pendulum"""
         # mppi parameters
-        self.dim_x = 2 # dimension of state vector
         self.dim_u = 1 # dimension of control input vector
         self.T = horizon_step_T # prediction horizon
         self.K = number_of_samples_K # number of sample trajectories
@@ -44,7 +44,7 @@ class MPPIControllerForPendulum():
         # mppi variables
         self.u_prev = np.zeros((self.T))
 
-    def calc_control_input(self, observed_x):
+    def calc_control_input(self, observed_x: np.ndarray) -> Tuple[float, np.ndarray]:
         """calculate optimal control input"""
         # load privious control input sequence
         u = self.u_prev
@@ -106,17 +106,17 @@ class MPPIControllerForPendulum():
         # return optimal control input and input sequence
         return u[0], u 
 
-    def _calc_epsilon(self, sigma, size_sample, size_time_step):
+    def _calc_epsilon(self, sigma: float, size_sample: int, size_time_step: int) -> np.ndarray:
         """sample epsilon"""
         epsilon = np.random.normal(0.0, sigma, (self.K, self.T)) # size is self.K x self.T
         return epsilon
 
-    def _g(self, v):
+    def _g(self, v: np.ndarray) -> float:
         """clamp input"""
         v = np.clip(v, -self.max_torque, self.max_torque)
         return v
 
-    def _c(self, x_t):
+    def _c(self, x_t: np.ndarray) -> float:
         """calculate stage cost"""
         # parse x_t
         theta, theta_dot = x_t[0], x_t[1]
@@ -126,7 +126,7 @@ class MPPIControllerForPendulum():
         stage_cost = self.stage_cost_weight[0]*theta**2 + self.stage_cost_weight[1]*theta_dot**2
         return stage_cost
 
-    def _phi(self, x_T):
+    def _phi(self, x_T: np.ndarray) -> float:
         """calculate terminal cost"""
         # parse x_T
         theta, theta_dot = x_T[0], x_T[1]
@@ -136,7 +136,7 @@ class MPPIControllerForPendulum():
         terminal_cost = self.terminal_cost_weight[0]*theta**2 + self.terminal_cost_weight[1]*theta_dot**2
         return terminal_cost
 
-    def _F(self, x_t, v_t):
+    def _F(self, x_t: np.ndarray, v_t: np.ndarray) -> np.ndarray:
         """calculate next state of the pendulum"""
         # get previous state variables
         theta, theta_dot = x_t[0], x_t[1]
@@ -157,7 +157,7 @@ class MPPIControllerForPendulum():
         x_t_plus_1 = np.array([new_theta, new_theta_dot])
         return x_t_plus_1
 
-    def _compute_weights(self, S):
+    def _compute_weights(self, S: np.ndarray) -> np.ndarray:
         """compute weights for each sample"""
         # prepare buffer
         w = np.ones((self.K)) # for debug
@@ -175,7 +175,7 @@ class MPPIControllerForPendulum():
             w[k] = (1.0 / eta) * np.exp( (-1.0/self.param_lambda) * (S[k]-rho) )
         return w
 
-    def _moving_average_filter(self, xx, window_size):
+    def _moving_average_filter(self, xx: np.ndarray, window_size: int) -> np.ndarray:
         """apply moving average filter for smoothing input sequence
         Ref. https://zenn.dev/bluepost/articles/1b7b580ab54e95
         """
@@ -188,7 +188,8 @@ class MPPIControllerForPendulum():
             xx_mean[-i] *= window_size/(i + n_conv - (window_size % 2)) 
         return xx_mean
 
-def run_simulation_mppi_pendulum():
+
+def run_simulation_mppi_pendulum() -> None:
     """run simulation of swinging up pendulum with MPPI controller"""
     print("[INFO] Start simulation of swinging up a pendulum with MPPI controller")
 
@@ -247,6 +248,7 @@ def run_simulation_mppi_pendulum():
 
     # save animation
     pendulum.save_animation("mppi_pendulum.mp4", interval=int(delta_t * 1000), movie_writer="ffmpeg") # ffmpeg is required to write mp4 file
+
 
 if __name__ == "__main__":
     run_simulation_mppi_pendulum()
