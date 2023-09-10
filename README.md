@@ -1,5 +1,5 @@
 # Simple MPPI Implementation with Python
-Model Predictive Path-Integral Control(MPPI) is a promising sampling-based optimal control algorithm.
+Model Predictive Path-Integral(MPPI) Control is a promising sampling-based optimal control algorithm.
 This repository was created to understand the basic idea of the algorithm.
 
 ## Dependency
@@ -13,6 +13,7 @@ cd python_simple_mppi
 poetry install
 ```
 
+<!-->
 ## Usage
 - Run simulation to swing up a pendulum.
     ```sh
@@ -25,6 +26,7 @@ poetry install
     cd python_simple_mppi
     poetry run jupyter notebook mppi_pendulum.ipynb
     ```
+-->
 
 ## References
 1. G. Williams et al. "Information-Theoretic Model Predictive Control: Theory and Applications to Autonomous Driving" 
