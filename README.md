@@ -3,6 +3,7 @@ Model Predictive Path-Integral(MPPI) Control is a promising sampling-based optim
 This repository is for understanding the basic idea of the algorithm.
 
 <img src="./media/pendulum_swingup_demo.gif" width="500px" alt="swinging up pendulum demonstraion">
+<img src="./media/cartpole_demo.gif" width="500px" alt="swinging up pendulum demonstraion">
 <!-- https://github.com/MizuhoAOKI/python_simple_mppi/assets/63337525/bda8cdbc-5cfd-4885-ac8d-3240867f027c -->
 
 ## Dependency
@@ -17,6 +18,8 @@ poetry install
 ```
 
 ## Usage
+
+### Pendulum
 - Run simulation to swing up a pendulum.
     ```sh
     cd python_simple_mppi
@@ -27,6 +30,19 @@ poetry install
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pendulum.ipynb
+    ```
+
+### CartPole
+- Run simulation of cartpole
+    ```sh
+    cd python_simple_mppi
+    poetry run python scripts/mppi_cartpole.py
+    ```
+
+- Run notebook if you would like to check mathematical explanations on the algorithm. 
+    ```sh
+    cd python_simple_mppi
+    poetry run jupyter notebook notebooks/mppi_cartpole.ipynb
     ```
 
 ## References
