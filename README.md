@@ -20,7 +20,7 @@ poetry install
 ## Usage
 
 ### Pendulum
-<img src="./media/pendulum.png" width="250px" alt="pendulum">
+<img src="./media/pendulum.png" width="300px" alt="pendulum">
 
 - Run simulation to swing up a pendulum.
     ```sh
@@ -35,7 +35,7 @@ poetry install
     ```
 
 ### CartPole
-<img src="./media/cartpole.png" width="250px" alt="cartpole">
+<img src="./media/cartpole.png" width="300px" alt="cartpole">
 
 - Run simulation of cartpole
     ```sh
