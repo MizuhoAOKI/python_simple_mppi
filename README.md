@@ -20,6 +20,8 @@ poetry install
 ## Usage
 
 ### Pendulum
+<img src="./media/pendulum.png" width="250px" alt="pendulum">
+
 - Run simulation to swing up a pendulum.
     ```sh
     cd python_simple_mppi
@@ -33,6 +35,8 @@ poetry install
     ```
 
 ### CartPole
+<img src="./media/cartpole.png" width="250px" alt="cartpole">
+
 - Run simulation of cartpole
     ```sh
     cd python_simple_mppi
