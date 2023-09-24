@@ -176,7 +176,7 @@ class Pendulum():
     
     def save_animation(self, filename: str, interval: int, movie_writer: str="ffmpeg") -> None:
         """save animation of the recorded frames (ffmpeg required)"""
-        ani = ArtistAnimation(self.fig, self.frames, interval=interval)
+        ani = ArtistAnimation(self.fig, self.frames, interval=interval, blit=True)
         ani.save(filename, writer=movie_writer)
 
 

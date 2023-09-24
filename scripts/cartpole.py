@@ -160,7 +160,7 @@ class CartPole():
 
     def save_animation(self, filename, interval, movie_writer="ffmpeg") -> None:
         """save animation of the recorded frames (ffmpeg required)"""
-        ani = ArtistAnimation(self.fig, self.frames, interval=interval)
+        ani = ArtistAnimation(self.fig, self.frames, interval=interval, blit=True)
         ani.save(filename, writer=movie_writer)
 
 
