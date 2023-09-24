@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["MizuhoAOKI <mizuhoaoki1998@gmail.com>"]
 readme = "README.md"
-packages = [{include = "python_simple_mppi"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.10"

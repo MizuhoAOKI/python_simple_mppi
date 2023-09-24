@@ -22,7 +22,7 @@ pip-log.txt
 
 .DS_Store
 .idea/*
-.python-version
+# .python-version
 .vscode/*
 
 /test.py
