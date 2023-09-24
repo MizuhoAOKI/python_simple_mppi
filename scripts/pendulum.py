@@ -70,7 +70,7 @@ class Pendulum():
         g = self.g
         m = self.mass_of_pole
         l = self.length_of_pole
-        dt = self.delta_t if delta_t is 0.0 else delta_t
+        dt = self.delta_t if delta_t == 0.0 else delta_t
 
         torque = np.clip(u, -self.max_torque, self.max_torque)[0]
         new_theta_dot = theta_dot + (3 * g / (2 * l) * np.sin(theta) + 3.0 / (m * l**2) * torque) * dt
