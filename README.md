@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # Simple MPPI Implementation with Python
 Model Predictive Path-Integral(MPPI) Control is a promising sampling-based optimal control algorithm.  
 This repository is for understanding the basic idea of the algorithm.
