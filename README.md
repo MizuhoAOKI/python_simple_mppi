@@ -11,8 +11,32 @@ This repository is for understanding the basic idea of the algorithm.
 <!-- https://github.com/MizuhoAOKI/python_simple_mppi/assets/63337525/bda8cdbc-5cfd-4885-ac8d-3240867f027c -->
 
 ## Dependency
-- [poetry](https://python-poetry.org/) : seting up python environment easily.
-- [ffmpeg](https://ffmpeg.org/) : mp4 movie writer
+
+- [python](https://www.python.org/)
+  - version 3.10 or higher is recommended.
+
+- [poetry](https://python-poetry.org/)
+  - seting up python environment easily and safely.
+  - only `numpy`, `matplotlib`, `notebook` are needed to run all scripts in this repository.
+
+- [ffmpeg](https://ffmpeg.org/)
+  - mp4 movie writer
+  - <details>
+    <summary>installation details</summary>
+
+    - For Ubuntu Users
+        - `sudo apt-get update`
+        - `sudo apt-get -y install ffmpeg`
+    - For Windows Users
+        - Install [scoop](https://scoop.sh/)
+        - `scoop install ffmpeg`
+    - For MacOS Users
+        - Install [homebrew](https://brew.sh/)
+        - `brew install ffmpeg`
+    - Check the official website if necessary
+        - https://ffmpeg.org/
+
+    </details>
 
 ## Setup
 ```sh
