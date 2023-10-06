@@ -2,7 +2,7 @@
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 # Simple MPPI Implementation with Python
-Model Predictive Path-Integral (MPPI) Control is a promising sampling-based optimal control algorithm.  
+Model Predictive Path-Integral (MPPI) Control [[G. Williams et al., 2018]](#references) is a promising sampling-based optimal control algorithm.  
 This repository is for understanding the basic idea of the algorithm.
 
 <img src="./media/pathtracking_demo.gif" width="500px" alt="pathtracking demonstraion">
