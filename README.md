@@ -23,8 +23,8 @@ poetry install
 
 ## Usage
 
-### Path-Tracking
-<!-- [TODO] add image here -->
+### Path Tracking
+<img src="./media/pathtracking.png" width="300px" alt="pendulum">
 
 <!-- [TODO] add scripts/mppi_pathtracking.py -->
 
