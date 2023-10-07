@@ -30,7 +30,7 @@ This repository is for understanding the basic idea of the algorithm.
     - For Windows Users
         - Install [scoop](https://scoop.sh/)
         - `scoop install ffmpeg`
-    - For MacOS Users
+    - For macOS Users
         - Install [homebrew](https://brew.sh/)
         - `brew install ffmpeg`
     - Check the official website if necessary
