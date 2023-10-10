@@ -67,7 +67,7 @@ poetry install
     poetry run python scripts/mppi_pendulum.py
     ```
 
-- Run notebook if you would like to check mathematical explanations on the algorithm. 
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm. 
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pendulum.ipynb
@@ -82,7 +82,7 @@ poetry install
     poetry run python scripts/mppi_cartpole.py
     ```
 
-- Run notebook if you would like to check mathematical explanations on the algorithm. 
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm. 
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_cartpole.ipynb
