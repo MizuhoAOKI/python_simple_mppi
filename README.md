@@ -50,9 +50,13 @@ poetry install
 ### Path Tracking
 <img src="./media/pathtracking.png" width="300px" alt="pendulum">
 
-<!-- [TODO] add scripts/mppi_pathtracking.py -->
-
 - Run path-tracking simulation
+    ```sh
+    cd python_simple_mppi
+    poetry run python scripts/mppi_pathtracking.py
+    ```
+
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm.
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pathtracking.ipynb
@@ -67,7 +71,7 @@ poetry install
     poetry run python scripts/mppi_pendulum.py
     ```
 
-- Run jupyter notebook if you would like to check mathematical explanations on the algorithm. 
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm.
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pendulum.ipynb
@@ -82,7 +86,7 @@ poetry install
     poetry run python scripts/mppi_cartpole.py
     ```
 
-- Run jupyter notebook if you would like to check mathematical explanations on the algorithm. 
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm.
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_cartpole.ipynb
