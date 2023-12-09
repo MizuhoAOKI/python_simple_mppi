@@ -13,9 +13,9 @@ class MPPIControllerForCartPole():
             max_force_abs: float = 100.0,
             horizon_step_T: int = 100,
             number_of_samples_K: int = 1000,
-            param_alpha: float = 0.0,
+            param_exploration: float = 0.0,
             param_lambda: float = 50.0,
-            param_a: float = 1.0,
+            param_alpha: float = 1.0,
             sigma: float = 10.0,
             stage_cost_weight: np.ndarray = np.array([5.0, 10.0, 0.1, 0.1]), # weight for [x, theta, x_dot, theta_dot]
             terminal_cost_weight: np.ndarray = np.array([5.0, 10.0, 0.1, 0.1]) # weight for [x, theta, x_dot, theta_dot]
@@ -25,10 +25,10 @@ class MPPIControllerForCartPole():
         self.dim_u = 1 # dimension of control input vector
         self.T = horizon_step_T # prediction horizon
         self.K = number_of_samples_K # number of sample trajectories
-        self.param_alpha = param_alpha  # constant parameter of mppi
+        self.param_exploration = param_exploration  # constant parameter of mppi
         self.param_lambda = param_lambda  # constant parameter of mppi
-        self.param_a = param_a # constant parameter of mppi
-        self.param_gamma = self.param_lambda * (1.0 - (self.param_a))  # constant parameter of mppi
+        self.param_alpha = param_alpha # constant parameter of mppi
+        self.param_gamma = self.param_lambda * (1.0 - (self.param_alpha))  # constant parameter of mppi
         self.Sigma = sigma # deviation of noise
         self.stage_cost_weight = stage_cost_weight
         self.terminal_cost_weight = terminal_cost_weight
@@ -70,7 +70,7 @@ class MPPIControllerForCartPole():
             for t in range(1, self.T+1):
 
                 # get control input with noise
-                if k < (1.0-self.param_alpha)*self.K:
+                if k < (1.0-self.param_exploration)*self.K:
                     v[t-1] = u[t-1] + epsilon[k, t-1] # sampling for exploitation
                 else:
                     v[t-1] = epsilon[k, t-1] # sampling for exploration
@@ -233,9 +233,9 @@ def run_simulation_mppi_cartpole() -> None:
         max_force_abs = 100.0,
         horizon_step_T = 100,
         number_of_samples_K = 1000,
-        param_alpha = 0.0,
+        param_exploration = 0.0,
         param_lambda = 50.0,
-        param_a = 1.0,
+        param_alpha = 1.0,
         sigma = 10.0,
         stage_cost_weight    = np.array([5.0, 10.0, 0.1, 0.1]), # weight for [x, theta, x_dot, theta_dot]
         terminal_cost_weight = np.array([5.0, 10.0, 0.1, 0.1]), # weight for [x, theta, x_dot, theta_dot]

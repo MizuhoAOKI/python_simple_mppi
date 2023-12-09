@@ -13,9 +13,9 @@ class MPPIControllerForPendulum():
             max_speed_abs: float = 8.0,
             horizon_step_T: int = 30,
             number_of_samples_K: int = 1000,
-            param_alpha: float = 0.01,
+            param_exploration: float = 0.01,
             param_lambda: float = 1.0,
-            param_a: float = 0.1,
+            param_alpha: float = 0.1,
             sigma: float = 1.0,
             stage_cost_weight: np.ndarray = np.array([1.0, 0.1]),
             terminal_cost_weight: np.ndarray = np.array([1.0, 0.1]),
@@ -25,10 +25,10 @@ class MPPIControllerForPendulum():
         self.dim_u = 1 # dimension of control input vector
         self.T = horizon_step_T # prediction horizon
         self.K = number_of_samples_K # number of sample trajectories
-        self.param_alpha = param_alpha  # constant parameter of mppi
+        self.param_exploration = param_exploration  # constant parameter of mppi
         self.param_lambda = param_lambda  # constant parameter of mppi
-        self.param_a = param_a # constant parameter of mppi
-        self.param_gamma = self.param_lambda * (1.0 - (self.param_a))  # constant parameter of mppi
+        self.param_alpha = param_alpha # constant parameter of mppi
+        self.param_gamma = self.param_lambda * (1.0 - (self.param_alpha))  # constant parameter of mppi
         self.Sigma = sigma # deviation of noise
         self.stage_cost_weight = stage_cost_weight
         self.terminal_cost_weight = terminal_cost_weight
@@ -70,7 +70,7 @@ class MPPIControllerForPendulum():
             for t in range(1, self.T+1):
 
                 # get control input with noise
-                if k < (1.0-self.param_alpha)*self.K:
+                if k < (1.0-self.param_exploration)*self.K:
                     v[t-1] = u[t-1] + epsilon[k, t-1] # sampling for exploitation
                 else:
                     v[t-1] = epsilon[k, t-1] # sampling for exploration
@@ -220,9 +220,9 @@ def run_simulation_mppi_pendulum() -> None:
         max_speed_abs = 8.0,
         horizon_step_T = 20,
         number_of_samples_K = 2000,
-        param_alpha = 0.05,
+        param_exploration = 0.05,
         param_lambda = 0.5,
-        param_a = 0.8,
+        param_alpha = 0.8,
         sigma = 1.0,
         stage_cost_weight    = np.array([1.0, 0.1]), # weight for [theta, theta_dot]
         terminal_cost_weight = 5.0 * np.array([1.0, 0.1]), # weight for [theta, theta_dot]
