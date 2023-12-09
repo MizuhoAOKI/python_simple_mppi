@@ -160,7 +160,7 @@ class MPPIControllerForPendulum():
     def _compute_weights(self, S: np.ndarray) -> np.ndarray:
         """compute weights for each sample"""
         # prepare buffer
-        w = np.ones((self.K)) # for debug
+        w = np.zeros((self.K))
 
         # calculate rho
         rho = S.min()
