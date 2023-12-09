@@ -5,6 +5,7 @@
 Model Predictive Path-Integral (MPPI) Control [[G. Williams et al., 2018]](#references) is a promising sampling-based optimal control algorithm.  
 This repository is for understanding the basic idea of the algorithm.
 
+<img src="./media/pathtracking_obav_demo.gif" width="500px" alt="pathtracking and obstacle avoidance demonstraion">
 <img src="./media/pathtracking_demo.gif" width="500px" alt="pathtracking demonstraion">
 <img src="./media/pendulum_swingup_demo.gif" width="500px" alt="swinging up pendulum demonstraion">
 <img src="./media/cartpole_demo.gif" width="500px" alt="swinging up pendulum demonstraion">
@@ -50,7 +51,8 @@ poetry install
 ### Path Tracking
 <img src="./media/pathtracking.png" width="300px" alt="pendulum">
 
-- Run path-tracking simulation
+#### Simple Path Tracking
+- Run simulation
     ```sh
     cd python_simple_mppi
     poetry run python scripts/mppi_pathtracking.py
@@ -60,6 +62,19 @@ poetry install
     ```sh
     cd python_simple_mppi
     poetry run jupyter notebook notebooks/mppi_pathtracking.ipynb
+    ```
+
+#### Path Tracking with Obstacle Avoidance
+- Run simulation
+    ```sh
+    cd python_simple_mppi
+    poetry run python scripts/mppi_pathtracking_obav.py
+    ```
+
+- Run jupyter notebook if you would like to check mathematical explanations on the algorithm.
+    ```sh
+    cd python_simple_mppi
+    poetry run jupyter notebook notebooks/mppi_pathtracking_obav.ipynb
     ```
 
 ### Pendulum
