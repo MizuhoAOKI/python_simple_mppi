@@ -17,7 +17,7 @@ This repository is for understanding the basic idea of the algorithm.
   - version 3.10 or higher is recommended.
 
 - [poetry](https://python-poetry.org/)
-  - seting up python environment easily and safely.
+  - setting up python environment easily and safely.
   - only `numpy`, `matplotlib`, `notebook` are needed to run all scripts in this repository.
 
 - [ffmpeg](https://ffmpeg.org/)
