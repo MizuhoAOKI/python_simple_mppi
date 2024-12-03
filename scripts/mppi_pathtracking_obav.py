@@ -113,7 +113,7 @@ class MPPIControllerForPathTracking():
 
         # calculate w_k * epsilon_k
         w_epsilon = np.zeros((self.T, self.dim_u))
-        for t in range(self.T): # loop for time step t = 0 ~ T-1
+        for t in range(0, self.T): # loop for time step t = 0 ~ T-1
             for k in range(self.K):
                 w_epsilon[t] += w[k] * epsilon[k, t]
 
@@ -127,8 +127,8 @@ class MPPIControllerForPathTracking():
         optimal_traj = np.zeros((self.T, self.dim_x))
         if self.visualize_optimal_traj:
             x = x0
-            for t in range(self.T):
-                x = self._F(x, self._g(u[t-1]))
+            for t in range(0, self.T): # loop for time step t = 0 ~ T-1
+                x = self._F(x, self._g(u[t]))
                 optimal_traj[t] = x
 
         # calculate sampled trajectories
@@ -137,8 +137,8 @@ class MPPIControllerForPathTracking():
         if self.visualze_sampled_trajs:
             for k in sorted_idx:
                 x = x0
-                for t in range(self.T):
-                    x = self._F(x, self._g(v[k, t-1]))
+                for t in range(0, self.T): # loop for time step t = 0 ~ T-1
+                    x = self._F(x, self._g(v[k, t]))
                     sampled_traj_list[k, t] = x
 
         # update privious control input sequence (shift 1 step to the left)
@@ -303,6 +303,7 @@ class MPPIControllerForPathTracking():
     def _moving_average_filter(self, xx: np.ndarray, window_size: int) -> np.ndarray:
         """apply moving average filter for smoothing input sequence
         Ref. https://zenn.dev/bluepost/articles/1b7b580ab54e95
+        Note: The original MPPI paper uses the Savitzky-Golay Filter for smoothing control inputs.
         """
         b = np.ones(window_size)/window_size
         dim = xx.shape[1]

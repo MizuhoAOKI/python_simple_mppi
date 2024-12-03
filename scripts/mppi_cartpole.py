@@ -89,7 +89,7 @@ class MPPIControllerForCartPole():
 
         # calculate w_k * epsilon_k
         w_epsilon = np.zeros((self.T))
-        for t in range(self.T): # loop for time step t = 0 ~ T-1
+        for t in range(0, self.T): # loop for time step t = 0 ~ T-1
             for k in range(self.K):
                 w_epsilon[t] += w[k] * epsilon[k, t]
 
@@ -193,6 +193,7 @@ class MPPIControllerForCartPole():
     def _moving_average_filter(self, xx: np.ndarray, window_size: int) -> np.ndarray:
         """apply moving average filter for smoothing input sequence
         Ref. https://zenn.dev/bluepost/articles/1b7b580ab54e95
+        Note: The original MPPI paper uses the Savitzky-Golay Filter for smoothing control inputs.
         """
         b = np.ones(window_size)/window_size
         xx_mean = np.convolve(xx, b, mode="same")
