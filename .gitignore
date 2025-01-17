@@ -2,6 +2,7 @@
 .ipynb_checkpoints
 __pycache__/
 *.pyc
+poetry.lock
 
 # Packages
 *.egg
