@@ -1,5 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![Docker](https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat)](https://www.docker.com/)
 
 # Simple MPPI Implementation with Python
 Model Predictive Path-Integral (MPPI) Control [[G. Williams et al., 2018]](#references) is a promising sampling-based optimal control algorithm.  
@@ -40,11 +41,40 @@ This repository is for understanding the basic idea of the algorithm.
     </details>
 
 ## Setup
+### [Option 1] Native environment
 ```sh
 git clone https://github.com/MizuhoAOKI/python_simple_mppi.git
 cd python_simple_mppi
 poetry install
 ```
+
+### [Option 2] Docker environment
+<details>
+<summary>CLICK HERE TO EXPAND</summary>
+
+1. Install [docker](https://docs.docker.com/engine/install/).
+
+1. Clone the project repository.
+    ```
+    cd <path to your workspace>
+    git clone https://github.com/MizuhoAOKI/python_simple_mppi.git
+    ```
+
+1. Run for the first time setup to build the docker image. Building the image might take a few minutes.
+    ```
+    cd <path to your workspace>/python_simple_mppi
+    docker build -t dev_mppi:v0.0 -f docker/Dockerfile .
+    ```
+
+1. Launch the docker container and get into the bash inside.
+    ```
+    cd <path to your workspace>/python_simple_mppi
+    docker run -it -v .:/dev_ws/python_simple_mppi --name dev_mppi_container dev_mppi:v0.0 bash
+    ```
+    Once the container starts, any changes made in the local repository on the host will be reflected inside the container, and vice versa.
+
+</details>
+
 
 ## Usage
 
