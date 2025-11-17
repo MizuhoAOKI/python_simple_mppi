@@ -2,7 +2,7 @@
 .ipynb_checkpoints
 __pycache__/
 *.pyc
-poetry.lock
+uv.lock
 
 # Packages
 *.egg
@@ -40,6 +40,3 @@ MANIFEST.in
 .venv
 /releases/*
 pip-wheel-metadata
-/poetry.toml
-
-poetry/core/*
