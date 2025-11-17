@@ -175,9 +175,10 @@ class MPPIControllerForPathTracking():
 
         # calculate stage cost
         _, ref_x, ref_y, ref_yaw, ref_v = self._get_nearest_waypoint(x, y)
+        yaw_diff = np.arctan2(np.sin(yaw-ref_yaw), np.cos(yaw-ref_yaw)) # normalize yaw error to [-pi, pi]
         stage_cost = self.stage_cost_weight[0]*(x-ref_x)**2 + self.stage_cost_weight[1]*(y-ref_y)**2 + \
-                     self.stage_cost_weight[2]*(yaw-ref_yaw)**2 + self.stage_cost_weight[3]*(v-ref_v)**2
-        
+                     self.stage_cost_weight[2]*(yaw_diff)**2 + self.stage_cost_weight[3]*(v-ref_v)**2
+
         # add penalty for collision with obstacles
         stage_cost += self._is_collided(x_t) * 1.0e10
 
@@ -191,9 +192,10 @@ class MPPIControllerForPathTracking():
 
         # calculate terminal cost
         _, ref_x, ref_y, ref_yaw, ref_v = self._get_nearest_waypoint(x, y)
+        yaw_diff = np.arctan2(np.sin(yaw-ref_yaw), np.cos(yaw-ref_yaw)) # normalize yaw error to [-pi, pi]
         terminal_cost = self.terminal_cost_weight[0]*(x-ref_x)**2 + self.terminal_cost_weight[1]*(y-ref_y)**2 + \
-                        self.terminal_cost_weight[2]*(yaw-ref_yaw)**2 + self.terminal_cost_weight[3]*(v-ref_v)**2
-        
+                        self.terminal_cost_weight[2]*(yaw_diff)**2 + self.terminal_cost_weight[3]*(v-ref_v)**2
+
         # add penalty for collision with obstacles
         terminal_cost += self._is_collided(x_T) * 1.0e10
         
