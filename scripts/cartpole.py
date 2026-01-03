@@ -83,12 +83,12 @@ class CartPole():
 
         # get acc. values
         temp = (
-            force + (m*l) * theta_dot**2 * np.sin(theta)
+            force - (m*l) * theta_dot**2 * np.sin(theta)
         ) / (M + m)
-        new_theta_ddot = (g * np.sin(theta) - np.cos(theta) * temp) / (
+        new_theta_ddot = (g * np.sin(theta) + np.cos(theta) * temp) / (
             l * (4.0 / 3.0 - m * np.cos(theta)**2 / (M + m))
         )
-        new_x_ddot = temp - (m*l)  * new_theta_ddot * np.cos(theta) / (M+m)
+        new_x_ddot = temp + (m*l)  * new_theta_ddot * np.cos(theta) / (M+m)
 
         # update pos. values
         new_x = x + x_dot * dt
