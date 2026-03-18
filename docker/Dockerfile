@@ -12,4 +12,4 @@ RUN apt update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN uv sync
+RUN uv sync --no-cache
