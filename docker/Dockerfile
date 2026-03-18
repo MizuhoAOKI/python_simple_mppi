@@ -7,7 +7,9 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /dev_ws/python_simple_mppi
 COPY . /dev_ws/python_simple_mppi
 
-RUN apt-get update
-RUN apt install -y ffmpeg nano
+RUN apt update \
+    && apt install -y ffmpeg nano \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN uv sync
