@@ -7,7 +7,5 @@ services:
     image: dev_mppi:v1.1
     volumes:
       - .:/dev_ws/python_simple_mppi
-    environment:
-      - UV_PROJECT_ENVIRONMENT=/uv_venv
     stdin_open: true
     tty: true
