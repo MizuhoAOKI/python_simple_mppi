@@ -62,6 +62,7 @@ uv sync
     cd <path to your workspace>/python_simple_mppi
     docker compose run --rm dev
     ```
+    This command will automatically build the Docker image if needed.
     Once the container starts, any changes made in the local repository on the host will be reflected inside the container, and vice versa.
 
 </details>
