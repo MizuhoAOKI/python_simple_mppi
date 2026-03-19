@@ -4,13 +4,12 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 SHELL ["/bin/bash", "-c"]
 
-WORKDIR /dev_ws/
-
-RUN apt-get update
-RUN apt install -y git ffmpeg nano
-
-RUN git clone https://github.com/MizuhoAOKI/python_simple_mppi.git
 WORKDIR /dev_ws/python_simple_mppi
-RUN uv sync
+COPY . /dev_ws/python_simple_mppi
 
-WORKDIR /dev_ws/python_simple_mppi
+RUN apt update \
+    && apt install -y ffmpeg nano \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN uv sync --no-cache
