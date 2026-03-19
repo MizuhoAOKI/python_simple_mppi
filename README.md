@@ -60,13 +60,13 @@ uv sync
 1. Run for the first time setup to build the docker image. Building the image might take a few minutes.
     ```
     cd <path to your workspace>/python_simple_mppi
-    docker build -t dev_mppi:v1.0 -f docker/Dockerfile .
+    docker build -t dev_mppi:v1.1 -f docker/Dockerfile .
     ```
 
 1. Launch the docker container and get into the bash inside.
     ```
     cd <path to your workspace>/python_simple_mppi
-    docker run -it -v .:/dev_ws/python_simple_mppi --name dev_mppi_container dev_mppi:v1.0 bash
+    docker run -it -v .:/dev_ws/python_simple_mppi --name dev_mppi_container dev_mppi:v1.1 bash
     ```
     Once the container starts, any changes made in the local repository on the host will be reflected inside the container, and vice versa.
 
