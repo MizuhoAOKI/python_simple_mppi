@@ -1,0 +1,11 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: dev_mppi_container
+    image: dev_mppi:v1.1
+    volumes:
+      - .:/dev_ws/python_simple_mppi
+    stdin_open: true
+    tty: true
